@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SanakoeHarjoittaja3000</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="UTF-8">
+	<style type="text/css">
+
+		@font-face {
+			font-family: coolvetica
+			src: url(fonts/coolvetica.ttf);
+		}
+
+
+		body, html {
+			background-color: #bdc3c7;
+			position: relative;
+
+			-webkit-animation: color_change 1s infinite alternate;
+			-moz-animation: color_change 1s infinite alternate;
+			-ms-animation: color_change 1s infinite alternate;
+			-o-animation: color_change 1s infinite alternate;
+			animation: color_change 1s infinite alternate;
+		}
+
+		h2 {
+			padding-bottom: 20px;
+		}
+
+		p {
+			font-size: 25px;
+			font-family: coolvetica;
+		}
+
+		input, select, textarea, button {
+			display: inline-block;
+			border: 2px solid #1abc9c; /* neutral = #1abc9c | green =  #2ecc71 | red = #c0392b */
+			border-radius: 5px;
+			padding: 0.5em;
+			font-size: 150%;
+			line-height: 1.2em;
+			width: auto;
+			background: #fff;
+			-webkit-appearance: none;
+			-webkit-border-radius: 0.5em;
+			text-align: center;
+			margin: 2px;
+			outline: none;
+		}
+
+		button {
+			background-color: #fff;
+			border-color: #7f8c8d;
+		}
+
+		.container {
+			text-align: center;
+			background-color: #95a5a6;
+			overflow:hidden;
+		    padding-bottom: 48%;
+		    overflow: hidden;
+		    position: relative;
+		    width: auto;
+		}
+
+		#counter {
+		}
+
+	</style>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/checker.js"></script>
+</head>
+	<body>
+		<div class="container">
+			<p id="fi-txt">SANA SUOMEKSI</p>
+			<input oninput="CheckWord1()" placeholder="Preesens..." id="1"/>
+			<input oninput="CheckWord2()" placeholder="Imperfekti..." id="2"/>
+			<input oninput="CheckWord3()" placeholder="Perfekti..." id="3"/>
+			<p id="counter">*moi*</p>
+			<button type="button" onclick="showAnswers()" id="btn">Nyt en kyllä tiedä</button>
+		</div>
+	</body>
+</html>
