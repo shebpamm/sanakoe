@@ -87,6 +87,10 @@ function ProceedToNext() {
 	document.getElementById("2").value = "";
 	document.getElementById("3").value = "";
 
+	$("#1").css('border-color', '#1abc9c');
+	$("#2").css('border-color', '#1abc9c');
+	$("#3").css('border-color', '#1abc9c');
+
 	//Reset Vars
 	firstChecked = false;
 	secondChecked = false;
@@ -112,13 +116,14 @@ function showAnswers() {
 	{
 		document.getElementById("1").value = firstAnswer;
 		document.getElementById("2").value = secondAnswer;
-		document.getElementById("3").value = thirdAnswer;
+		document.getElementById("3").value = thirdAnswer;		
 
 		button.innerHTML = "Seuraava Kysymys";
 
 	}
 	else 
 	{
+
 		button.innerHTML = "Nyt en kyllä tiedä";
 		ProceedToNext();
 	}
