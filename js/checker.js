@@ -9,7 +9,7 @@ var thirdAnswer = "sorsa";
 var words_raw = '{"words":[{"fi":"Lyödä, iskeä","eng1":"strike","eng2":"struck","eng3":"struck"},{"fi":"Lyödä, osua","eng1":"hit","eng2":"hit","eng3":"hit"},{"fi":"Lyödä Vetoa","eng1":"bet","eng2":"bet","eng3":"bet"},{"fi":"Lyödä, voittaa","eng1":"beat","eng2":"beat","eng3":"beaten"},{"fi":"Lähettää","eng1":"send","eng2":"sent","eng3":"sent"},{"fi":"Lähteä","eng1":"leave","eng2":"left","eng3":"left"},{"fi":"Löytää","eng1":"find","eng2":"found","eng3":"found"},{"fi":"Maata, olla","eng1":"lie","eng2":"lay","eng3":"lain"},{"fi":"Maksaa","eng1":"pay","eng2":"paid","eng3":"paid"},{"fi":"Maksaa, olla hintana","eng1":"cost","eng2":"cost","eng3":"cost"},{"fi":"Menettää","eng1":"lose","eng2":"lost","eng3":"lost"},{"fi":"Mennä","eng1":"go","eng2":"went","eng3":"gone"},{"fi":"Myydä","eng1":"sell","eng2":"sold","eng3":"sold"},{"fi":"Nousta","eng1":"rise","eng2":"rose","eng3":"risen"},{"fi":"Nukkua","eng1":"sleep","eng2":"slept","eng3":"slept"}]}'
 var UsedWords = [];
 
-//Sanojen Taristajat
+//Word Checkers
 	function CheckWord1() {
 		var value = document.getElementById("1").value;
 			if (value.toLowerCase() == firstAnswer.toLowerCase()) {
@@ -60,6 +60,9 @@ var UsedWords = [];
 		CheckAnswers();
 	}
 
+
+//TODO: Improve this function
+//Retrieve a new word
 function GetRandomInt() {
 	var isOk = false;
 	var num = 30;
@@ -87,6 +90,7 @@ function GetRandomInt() {
 	return num;
 }
 
+//Self Explanatory
 function CheckAnswers() {
 	if (firstChecked == true && secondChecked == true && thirdChecked == true) {
 		ProceedToNext()
@@ -113,31 +117,34 @@ function ProceedToNext() {
 	}
 	else
 	{
+		//redirect to winning site
+		/TODO: Make some fancy js thingy 
+		instead of loading a different site/
 		window.location.replace("win.html");
 	}
 }
 
+
 function showAnswers() {
 	var button = document.getElementById("btn");
-if (button.innerHTML == "Nyt en kyllä tiedä") {
-	document.getElementById("1").value = firstAnswer;
-	document.getElementById("2").value = secondAnswer;
-	document.getElementById("3").value = thirdAnswer;
+	if (button.innerHTML == "Nyt en kyllä tiedä") 
+	{
+		document.getElementById("1").value = firstAnswer;
+		document.getElementById("2").value = secondAnswer;
+		document.getElementById("3").value = thirdAnswer;
 
-	button.innerHTML = "Seuraava Kysymys";
+		button.innerHTML = "Seuraava Kysymys";
 
 	}
-else {
-	button.innerHTML = "Nyt en kyllä tiedä";
-	ProceedToNext();
-}
+	else 
+	{
+		button.innerHTML = "Nyt en kyllä tiedä";
+		ProceedToNext();
+	}
 
 }
 
-function gotoFinish() {
-
-}
-
+//Gets run on startup
 function onStart() {
 	document.getElementById("1").focus();
 	words = JSON.parse(words_raw);
@@ -150,4 +157,5 @@ function onStart() {
 	thirdAnswer = words.words[index].eng3
 }
 
+//Wait for site to load
 jQuery(document).ready(onStart);
