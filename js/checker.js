@@ -8,7 +8,6 @@ var thirdAnswer = "sorsa";
 
 var words_raw = '{"words":[{"fi":"Lyödä, iskeä","eng1":"strike","eng2":"struck","eng3":"struck"},{"fi":"Lyödä, osua","eng1":"hit","eng2":"hit","eng3":"hit"},{"fi":"Lyödä Vetoa","eng1":"bet","eng2":"bet","eng3":"bet"},{"fi":"Lyödä, voittaa","eng1":"beat","eng2":"beat","eng3":"beaten"},{"fi":"Lähettää","eng1":"send","eng2":"sent","eng3":"sent"},{"fi":"Lähteä","eng1":"leave","eng2":"left","eng3":"left"},{"fi":"Löytää","eng1":"find","eng2":"found","eng3":"found"},{"fi":"Maata, olla","eng1":"lie","eng2":"lay","eng3":"lain"},{"fi":"Maksaa","eng1":"pay","eng2":"paid","eng3":"paid"},{"fi":"Maksaa, olla hintana","eng1":"cost","eng2":"cost","eng3":"cost"},{"fi":"Menettää","eng1":"lose","eng2":"lost","eng3":"lost"},{"fi":"Mennä","eng1":"go","eng2":"went","eng3":"gone"},{"fi":"Myydä","eng1":"sell","eng2":"sold","eng3":"sold"},{"fi":"Nousta","eng1":"rise","eng2":"rose","eng3":"risen"},{"fi":"Nukkua","eng1":"sleep","eng2":"slept","eng3":"slept"}]}'
 var words;
-var UsedWords = [];
 var WordCount = 0;
 
 //Word Checkers
@@ -133,7 +132,6 @@ function showAnswers() {
 //Gets ran on startup
 function onStart() {
 	document.getElementById("1").focus();
-	words = JSON.parse(words_raw);
 	var index = GetRandomInt();
 	index--;
 	$("#fi-txt").text(words.words[index].fi)
@@ -145,6 +143,7 @@ function onStart() {
 
 //Wait for site to load
 jQuery(document).ready(function($) {
+	words = JSON.parse(words_raw);
 	onStart();
 	WordCount--;
 	$("#counter").text(WordCount + "/15 Suoritettu")
