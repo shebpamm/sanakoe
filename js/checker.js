@@ -7,7 +7,9 @@ var secondAnswer = "sorsa";
 var thirdAnswer = "sorsa";
 
 var words_raw = '{"words":[{"fi":"Lyödä, iskeä","eng1":"strike","eng2":"struck","eng3":"struck"},{"fi":"Lyödä, osua","eng1":"hit","eng2":"hit","eng3":"hit"},{"fi":"Lyödä Vetoa","eng1":"bet","eng2":"bet","eng3":"bet"},{"fi":"Lyödä, voittaa","eng1":"beat","eng2":"beat","eng3":"beaten"},{"fi":"Lähettää","eng1":"send","eng2":"sent","eng3":"sent"},{"fi":"Lähteä","eng1":"leave","eng2":"left","eng3":"left"},{"fi":"Löytää","eng1":"find","eng2":"found","eng3":"found"},{"fi":"Maata, olla","eng1":"lie","eng2":"lay","eng3":"lain"},{"fi":"Maksaa","eng1":"pay","eng2":"paid","eng3":"paid"},{"fi":"Maksaa, olla hintana","eng1":"cost","eng2":"cost","eng3":"cost"},{"fi":"Menettää","eng1":"lose","eng2":"lost","eng3":"lost"},{"fi":"Mennä","eng1":"go","eng2":"went","eng3":"gone"},{"fi":"Myydä","eng1":"sell","eng2":"sold","eng3":"sold"},{"fi":"Nousta","eng1":"rise","eng2":"rose","eng3":"risen"},{"fi":"Nukkua","eng1":"sleep","eng2":"slept","eng3":"slept"}]}'
+var words;
 var UsedWords = [];
+var WordCount = 0;
 
 //Word Checkers
 	function CheckWord1() {
@@ -60,34 +62,13 @@ var UsedWords = [];
 		CheckAnswers();
 	}
 
-
-//TODO: Improve this function
 //Retrieve a new word
 function GetRandomInt() {
-	var isOk = false;
-	var num = 30;
-	while (isOk == false) {
-		num = Math.floor((Math.random() * 15) + 1);
-		var passed = 0;
-		if(UsedWords.length != 0) {
-			for (var i = 0; i < UsedWords.length; i++) {
-				
-				if (num == UsedWords[i]) {
-					num = Math.floor((Math.random() * 15) + 1);
-					i = 0;
-				}
-				else
-				{
-					passed++;
-				}
-			};
-		}
-		else isOk = true;
-
-		if(passed == UsedWords.length) isOk = true;
-	}
-	UsedWords.push(num);
+	num = Math.floor((Math.random() * words.words.length) + 1);
+	words.words.splice(num, 1);
+	WordCount++;
 	return num;
+
 }
 
 //Self Explanatory
@@ -111,15 +92,15 @@ function ProceedToNext() {
 	secondChecked = false;
 	thirdChecked = false;
 
-	if(UsedWords.length != 15) {
+	if(WordCount != 14) {
 		//Start Again
 		onStart();
 	}
 	else
 	{
 		//redirect to winning site
-		/TODO: Make some fancy js thingy 
-		instead of loading a different site/
+		/*TODO: Make some fancy js thingy 
+		instead of loading a different site*/
 		window.location.replace("win.html");
 	}
 }
@@ -144,18 +125,22 @@ function showAnswers() {
 
 }
 
-//Gets run on startup
+//Gets ran on startup
 function onStart() {
 	document.getElementById("1").focus();
 	words = JSON.parse(words_raw);
 	var index = GetRandomInt();
 	index--;
 	$("#fi-txt").text(words.words[index].fi)
-	$("#counter").text(UsedWords.length-1 + "/15 Suoritettu")
+	$("#counter").text(WordCount + "/15 Suoritettu")
 	firstAnswer = words.words[index].eng1
 	secondAnswer = words.words[index].eng2
 	thirdAnswer = words.words[index].eng3
 }
 
 //Wait for site to load
-jQuery(document).ready(onStart);
+jQuery(document).ready(function($) {
+	onStart();
+	WordCount--;
+	$("#counter").text(WordCount + "/15 Suoritettu")
+});
