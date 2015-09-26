@@ -63,8 +63,7 @@ var WordCount = 0;
 
 //Retrieve a new word
 function GetRandomInt() {
-	num = Math.floor((Math.random() * words.words.length) + 1);
-	words.words.splice(num, 1);
+	num = Math.floor((Math.random() * words.words.length));
 	WordCount++;
 	return num;
 
@@ -133,12 +132,12 @@ function showAnswers() {
 function onStart() {
 	document.getElementById("1").focus();
 	var index = GetRandomInt();
-	index--;
 	$("#fi-txt").text(words.words[index].fi)
 	$("#counter").text(WordCount + "/15 Suoritettu")
 	firstAnswer = words.words[index].eng1
 	secondAnswer = words.words[index].eng2
 	thirdAnswer = words.words[index].eng3
+	console.log(words.words.splice(index, 1));
 }
 
 //Wait for site to load
