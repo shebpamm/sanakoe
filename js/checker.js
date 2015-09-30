@@ -12,6 +12,7 @@ var WordCount = 0;
 
 //Word Checkers
 	function CheckWord1() {
+		checkSpaces('1');
 		var value = document.getElementById("1").value;
 			if (value.toLowerCase() == firstAnswer.toLowerCase()) {
 			$("#1").css('border-color', '#26A65B');
@@ -29,6 +30,7 @@ var WordCount = 0;
 	}
 
 	function CheckWord2() {
+		checkSpaces('2');
 		var value = document.getElementById("2").value;
 			if (value.toLowerCase() == secondAnswer.toLowerCase()) {
 			$("#2").css('border-color', '#26A65B');
@@ -46,6 +48,7 @@ var WordCount = 0;
 	}
 
 	function CheckWord3() {
+		checkSpaces('3');
 		var value = document.getElementById("3").value;
 			if (value.toLowerCase() == thirdAnswer.toLowerCase()) {
 			$("#3").css('border-color', '#26A65B');
@@ -60,6 +63,13 @@ var WordCount = 0;
 		};
 		CheckAnswers();
 	}
+
+function checkSpaces(i) {
+	value = document.getElementById(i).value;
+	if(value[value.length-1] == ' ') {
+		document.getElementById(i).value = value.slice(0, value.length-1)
+	}
+}
 
 //Retrieve a new word
 function GetRandomInt() {
