@@ -6,9 +6,14 @@ var firstAnswer = "sorsa";
 var secondAnswer = "sorsa";
 var thirdAnswer = "sorsa";
 
-var words_raw = '{"words":[{"fi":"Nähdä","eng1":"see","eng2":"saw","eng3":"seen"},{"fi":"Näyttää, osoittaa","eng1":"show","eng2":"showed","eng3":"shown"},{"fi":"Olla","eng1":"be","eng2":"was/were","eng3":"been"},{"fi":"Olla (jollakulla)","eng1":"have","eng2":"had","eng3":"had"},{"fi":"Ommella","eng1":"sew","eng2":"sewed","eng3":"sewn"},{"fi":"Opettaa","eng1":"teach","eng2":"taught","eng3":"taught"},{"fi":"Oppia","eng1":"learn","eng2":"learnt","eng3":"learnt"},{"fi":"Ostaa","eng1":"buy","eng2":"bought","eng3":"bought"},{"fi":"Osua","eng1":"hit","eng2":"hit","eng3":"hit"},{"fi":"Ottaa","eng1":"take","eng2":"took","eng3":"taken"},{"fi":"Ottaa kiinni","eng1":"catch","eng2":"caught","eng3":"caught"},{"fi":"paistaa (aurinko)","eng1":"shine","eng2":"shone","eng3":"shone"},{"fi":"palaa","eng1":"burn","eng2":"burnt","eng3":"burnt"},{"fi":"panna, asettaa","eng1":"lay","eng2":"laid","eng3":"laid"},{"fi":"panna, asettaa","eng1":"put","eng2":"put","eng3":"put"}]}'
+var words_raw = '{"words":[{"fi":"Pidellä","eng1":"hold","eng2":"held","eng3":"held"},{"fi":"piilottaa, piiloutua","eng1":"hide","eng2":"hid","eng3":"hidden"},{"fi":"piirtää","eng1":"draw","eng2":"drew","eng3":"drawn"},{"fi":"pilata","eng1":"spoil","eng2":"spoilt","eng3":"spoilt"},{"fi":"pistää, laittaa","eng1":"stick","eng2":"stuck","eng3":"stuck"},{"fi":"pitää (esim. kädessä)","eng1":"hold","eng2":"held","eng3":"held"},{"fi":"pitää yllään","eng1":"wear","eng2":"wore","eng3":"worn"},{"fi":"pitää, säilyttää","eng1":"keep","eng2":"kept","eng3":"kept"},{"fi":"polttaa","eng1":"burn","eng2":"burnt","eng3":"burnt"},{"fi":"pudota","eng1":"fall","eng2":"fell","eng3":"fallen"},{"fi":"puhaltaa","eng1":"blow","eng2":"blew","eng3":"blown"},{"fi":"puhua","eng1":"speak","eng2":"spoke","eng3":"spoken"},{"fi":"purra","eng1":"bite","eng2":"bit","eng3":"bitten"},{"fi":"päästä","eng1":"get","eng2":"got","eng3":"got"},{"fi":"rakentaa","eng1":"build","eng2":"built","eng3":"built"}]}';
 var words;
 var WordCount = 0;
+
+//Add Capitalizion to string
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 //Word Checkers
 	function CheckWord1() {
@@ -142,7 +147,7 @@ function showAnswers() {
 function onStart() {
 	document.getElementById("1").focus();
 	var index = GetRandomInt();
-	$("#fi-txt").text(words.words[index].fi)
+	$("#fi-txt").text(words.words[index].fi.capitalize())
 	$("#counter").text(WordCount + "/15 Suoritettu")
 	firstAnswer = words.words[index].eng1
 	secondAnswer = words.words[index].eng2
