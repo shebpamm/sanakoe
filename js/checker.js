@@ -6,7 +6,7 @@ var firstAnswer = "sorsa";
 var secondAnswer = "sorsa";
 var thirdAnswer = "sorsa";
 
-var words_raw = '{"words":[{"fi":"Pidellä","eng1":"hold","eng2":"held","eng3":"held"},{"fi":"piilottaa, piiloutua","eng1":"hide","eng2":"hid","eng3":"hidden"},{"fi":"piirtää","eng1":"draw","eng2":"drew","eng3":"drawn"},{"fi":"pilata","eng1":"spoil","eng2":"spoilt","eng3":"spoilt"},{"fi":"pistää, laittaa","eng1":"stick","eng2":"stuck","eng3":"stuck"},{"fi":"pitää (esim. kädessä)","eng1":"hold","eng2":"held","eng3":"held"},{"fi":"pitää yllään","eng1":"wear","eng2":"wore","eng3":"worn"},{"fi":"pitää, säilyttää","eng1":"keep","eng2":"kept","eng3":"kept"},{"fi":"polttaa","eng1":"burn","eng2":"burnt","eng3":"burnt"},{"fi":"pudota","eng1":"fall","eng2":"fell","eng3":"fallen"},{"fi":"puhaltaa","eng1":"blow","eng2":"blew","eng3":"blown"},{"fi":"puhua","eng1":"speak","eng2":"spoke","eng3":"spoken"},{"fi":"purra","eng1":"bite","eng2":"bit","eng3":"bitten"},{"fi":"päästä","eng1":"get","eng2":"got","eng3":"got"},{"fi":"rakentaa","eng1":"build","eng2":"built","eng3":"built"}]}';
+var words_raw = '{"words":[{"fi":"ravistaa","eng1":"shake","eng2":"shook","eng3":"shaken"},{"fi":"repiä","eng1":"tear","eng2":"tore","eng3":"torn"},{"fi":"riippua kiinni jossakin","eng1":"cling","eng2":"clung","eng3":"clung"},{"fi":"riippua, ripustaa","eng1":"hang","eng2":"hung","eng3":"hung"},{"fi":"rikkoa","eng1":"break","eng2":"broke","eng3":"broken"},{"fi":"ruokkia","eng1":"feed","eng2":"fed","eng3":"fed"},{"fi":"ryömiä","eng1":"creep","eng2":"crept","eng3":"crept"},{"fi":"saada","eng1":"get","eng2":"got","eng3":"got"},{"fi":"saada kiinni","eng1":"catch","eng2":"caught","eng3":"caught"},{"fi":"sanoa","eng1":"say","eng2":"said","eng3":"said"},{"fi":"satuttaa","eng1":"hurt","eng2":"hurt","eng3":"hurt"},{"fi":"seisoa","eng1":"stand","eng2":"stood","eng3":"stood"},{"fi":"soida, soittaa","eng1":"ring","eng2":"rang","eng3":"rung"},{"fi":"sulkea","eng1":"shut","eng2":"shut","eng3":"shut"},{"fi":"sylkeä","eng1":"spit","eng2":"spat","eng3":"spat"}]}';
 var words;
 var WordCount = 0;
 
@@ -92,8 +92,6 @@ function CheckAnswers() {
 }
 
 function ProceedToNext() {
-	//Flash Background
-	$("body").css('background-color', '#27ae60');
 
 	//Clear Boxes
 	document.getElementById("1").value = "";
@@ -118,11 +116,11 @@ function ProceedToNext() {
 		//redirect to winning site
 		/*TODO: Make some fancy js thingy 
 		instead of loading a different site*/
-		window.location.replace("win.html");
+		moveToLeft();
 	}
 }
 
-
+//You should know what this does
 function showAnswers() {
 	var button = document.getElementById("btn");
 	if (button.innerHTML == "Nyt en kyllä tiedä") 
@@ -140,6 +138,44 @@ function showAnswers() {
 		button.innerHTML = "Nyt en kyllä tiedä";
 		ProceedToNext();
 	}
+
+}
+
+//Resets/Reloads the game
+function reset() {
+	document.getElementById("btn").innerHTML = "Nyt en kyllä tiedä"
+	document.getElementById("1").value = "";
+	document.getElementById("2").value = "";
+	document.getElementById("3").value = "";
+
+	WordCount = 0;
+	words = JSON.parse(words_raw);
+	onStart();
+	WordCount--;
+	$("#counter").text(WordCount + "/15 Suoritettu")
+
+	moveToRight();
+}
+
+function moveToLeft() {
+	$('.container').animate({'right' : "105%"}, 200, function() {
+	  $('.container').css('display', 'none');
+
+	  $('.wincontainer').css('display', 'block');
+	  $('.wincontainer').animate({'right' : "0%"});
+
+	});
+
+}
+
+function moveToRight() {
+	$('.wincontainer').animate({'right' : "-105%"}, 200, function() {
+	  $('.wincontainer').css('display', 'none');
+
+	  $('.container').css('display', 'block');
+	  $('.container').animate({'right' : "0%"});
+
+	});
 
 }
 
