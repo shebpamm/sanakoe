@@ -113,9 +113,7 @@ function ProceedToNext() {
 	}
 	else
 	{
-		//redirect to winning site
-		/*TODO: Make some fancy js thingy 
-		instead of loading a different site*/
+		//Initiate Win thing
 		moveToLeft();
 	}
 }

@@ -63,6 +63,18 @@
 		    width: auto;
 		}
 
+		.wincontainer {
+			text-align: center;
+			background-color: #95a5a6;
+			overflow:hidden;
+		    padding-bottom: 48%;
+		    overflow: hidden;
+		    position: relative;
+		    width: auto;
+		    right: -105%;
+		    display: none;
+		}
+
 		#counter {
 		}
 
@@ -72,12 +84,19 @@
 </head>
 	<body>
 		<div class="container">
-			<p id="fi-txt">SANA SUOMEKSI</p>
+			<p id="fi-txt">TARVITSEN JAVASCRIPTIN</p>
 			<input oninput="CheckWord1()" placeholder="Preesens..." id="1"/>
 			<input oninput="CheckWord2()" placeholder="Imperfekti..." id="2"/>
 			<input oninput="CheckWord3()" placeholder="Perfekti..." id="3"/>
 			<p id="counter">*moi*</p>
 			<button type="button" onclick="showAnswers()" id="btn">Nyt en kyllä tiedä</button>
+		</div>
+		<div class="wincontainer">
+			<center>
+			<h1>JEE!</h1>
+			<button onclick="reset()">Aloita Alusta</button>
+			<h6>Sori että tää sivu näyttää näin tyhmältä</h6>
+			<center>
 		</div>
 	</body>
 </html>
