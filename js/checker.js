@@ -107,7 +107,7 @@ function ProceedToNext() {
 	secondChecked = false;
 	thirdChecked = false;
 
-	if(WordCount != 14) {
+	if(WordCount != 13) {
 		//Start Again
 		onStart();
 	}
@@ -150,7 +150,7 @@ function reset() {
 	words = JSON.parse(words_raw);
 	onStart();
 	WordCount--;
-	$("#counter").text(WordCount + "/15 Suoritettu")
+	$("#counter").text(WordCount + "/14 Suoritettu")
 
 	moveToRight();
 }
@@ -182,7 +182,7 @@ function onStart() {
 	document.getElementById("1").focus();
 	var index = GetRandomInt();
 	$("#fi-txt").text(words.words[index].fi.capitalize())
-	$("#counter").text(WordCount + "/15 Suoritettu")
+	$("#counter").text(WordCount + "/14 Suoritettu")
 	firstAnswer = words.words[index].eng1
 	secondAnswer = words.words[index].eng2
 	thirdAnswer = words.words[index].eng3
@@ -194,5 +194,5 @@ jQuery(document).ready(function($) {
 	words = JSON.parse(words_raw);
 	onStart();
 	WordCount--;
-	$("#counter").text(WordCount + "/15 Suoritettu")
+	$("#counter").text(WordCount + "/14 Suoritettu")
 });
