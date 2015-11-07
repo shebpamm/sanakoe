@@ -9,6 +9,7 @@ var thirdAnswer = "sorsa";
 var words_raw = '{"words":[{"fi":"sytyttää","eng1":"light","eng2":"lit","eng3":"lit"},{"fi":"syödä","eng1":"eat","eng2":"ate","eng3":"eaten"},{"fi":"särkyä","eng1":"break","eng2":"broke","eng3":"broken"},{"fi":"taistella, tapella","eng1":"fight","eng2":"fought","eng3":"fought"},{"fi":"taipua, taivuttaa","eng1":"bend","eng2":"bent","eng3":"bent"},{"fi":"takertua johonkin","eng1":"cling","eng2":"clung","eng3":"clung"},{"fi":"tarkoittaa","eng1":"mean","eng2":"meant","eng3":"meant"},{"fi":"tavata","eng1":"meet","eng2":"met","eng3":"met"},{"fi":"tavata (sana)","eng1":"spell","eng2":"spelt","eng3":"spelt"},{"fi":"tehdä","eng1":"do","eng2":"did","eng3":"done"},{"fi":"tehdä, valmistaa","eng1":"make","eng2":"made","eng3":"made"},{"fi":"tietää","eng1":"know","eng2":"knew","eng3":"known"},{"fi":"tulla","eng1":"come","eng2":"came","eng3":"come"},{"fi":"tulla joksikin","eng1":"become","eng2":"became","eng3":"become"}]}';
 var words;
 var WordCount = 0;
+var WordsTotal = 0;
 
 //Add Capitalizion to string
 String.prototype.capitalize = function() {
@@ -107,7 +108,7 @@ function ProceedToNext() {
 	secondChecked = false;
 	thirdChecked = false;
 
-	if(WordCount != 13) {
+	if(WordCount != WordsTotal-1) {
 		//Start Again
 		onStart();
 	}
@@ -150,7 +151,7 @@ function reset() {
 	words = JSON.parse(words_raw);
 	onStart();
 	WordCount--;
-	$("#counter").text(WordCount + "/14 Suoritettu")
+	$("#counter").text(WordCount + "/" + WordsTotal + " Suoritettu")
 
 	moveToRight();
 }
@@ -192,7 +193,8 @@ function onStart() {
 //Wait for site to load
 jQuery(document).ready(function($) {
 	words = JSON.parse(words_raw);
+	WordsTotal = words.words.length;
 	onStart();
 	WordCount--;
-	$("#counter").text(WordCount + "/14 Suoritettu")
+	$("#counter").text(WordCount + "/" + WordsTotal + " Suoritettu")
 });
